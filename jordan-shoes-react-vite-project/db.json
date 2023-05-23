@@ -1,0 +1,52 @@
+{
+  "shoes": [
+    {
+      "id": 1,
+      "title": "Tênis de Caminhada Leve Nike 1",
+      "price": 179.9,
+      "image": "src/assets/1.png"
+    },
+    {
+      "id": 2,
+      "title": "Tênis VR Caminhada Nike 2",
+      "price": 139.9,
+      "image": "src/assets/2.png"
+    },
+    {
+      "id": 3,
+      "title": "Tênis Nike 3",
+      "price": 219.9,
+      "image": "src/assets/3.png"
+    },
+    {
+      "id": 4,
+      "title": "Tênis VR Caminhada Confortável Nike 4",
+      "price": 139.9,
+      "image": "src/assets/4.png"
+    },
+    {
+      "id": 5,
+      "title": "Tênis Nike 5 Duramo Lite 2.0",
+      "price": 219.9,
+      "image": "src/assets/5.png"
+    },
+    {
+      "id": 6,
+      "title": "Tênis de Caminhada Nike 6",
+      "price": 179.9,
+      "image": "src/assets/6.png"
+    },
+    {
+      "id": 7,
+      "title": "Tênis Nike 7",
+      "price": 139.9,
+      "image": "src/assets/7.png"
+    },
+    {
+      "id": 8,
+      "title": "Tênis Nike 8 Duramo Lite 5.0",
+      "price": 219.9,
+      "image": "src/assets/8.png"
+    }
+  ]
+}
