@@ -1,3 +1,4 @@
+import Banner from './components/Banner';
 import Footer from './components/Footer';
 import Slider from './components/Slider';
 import Home from './pages/Home';
@@ -7,6 +8,7 @@ function App() {
 
   return (
     <div className="App">
+      <Banner />
       <Slider />
       <Home />
       <Footer />
