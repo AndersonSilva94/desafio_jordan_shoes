@@ -1,4 +1,5 @@
 import Banner from './components/Banner';
+import Checkout from './components/Checkout';
 import Footer from './components/Footer';
 import Slider from './components/Slider';
 import StoreTitle from './components/StoreTitle';
@@ -14,6 +15,7 @@ function App() {
       <Slider />
       <Home />
       <Footer />
+      <Checkout />
       <GlobalStyle />
     </div>
   )
