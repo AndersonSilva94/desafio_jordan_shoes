@@ -33,5 +33,41 @@ export const CheckoutDiv = styled.div`
     background-color: var(--white);
     box-shadow: -1px 1px 20px var(--black-light);
     z-index: 10;
+    padding: 30px 20px;
+  `}
+`
+
+export const CheckoutMain = styled.div`
+  ${() => css`
+    display: flex;
+    flex-direction: column;
+  `}
+`
+
+export const Divider = styled.div`
+  ${() => css`
+    width: 100%;
+    height: 1px;
+    background-color: var(--gray);
+    margin: 15px 0;
+  `}
+`
+
+export const CheckoutMainTitle = styled.h2`
+  ${() => css`
+    font-size: 16px;
+  `}
+`
+
+export const CheckoutTotalPrice = styled.div`
+  ${() => css`
+    display: flex;
+    flex-direction: column;
+  `}
+`
+
+export const TotalPrice = styled.h3`
+  ${() => css`
+    font-size: 20px;
   `}
 `
