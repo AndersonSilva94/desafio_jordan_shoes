@@ -1,6 +1,31 @@
+import { useEffect, useState } from "react";
 import { Background, CheckoutDiv, CheckoutMain, CheckoutMainTitle, CheckoutTotalPrice, Container, Divider, TotalPrice } from "./styles";
+import { getAllShoes } from '../../services/api';
+import CheckoutCard from "../CheckoutCard";
+
+interface CardProps {
+  id: number;
+  title: string;
+  price: number;
+  image: string;
+}
 
 function Checkout() {
+  const [shoes, setShoes] = useState<CardProps[]>([]);
+
+  useEffect(() => {
+    const getShoes = async () => {
+      try {
+        const shoes = await getAllShoes();
+        setShoes(shoes);
+      } catch (err) {
+        console.error(true)
+      }
+    }
+
+    getShoes()
+  }, [])
+
   return (
     <Container>
       <Background />
@@ -10,6 +35,13 @@ function Checkout() {
             Carrinho de compras
           </CheckoutMainTitle>
           <Divider />
+          {shoes && shoes.map((shoe) => 
+          (<CheckoutCard
+            key={shoe.id}
+            title={shoe.title}
+            price={shoe.price}
+            image={shoe.image}
+          />)) }
         </CheckoutMain>
         <CheckoutTotalPrice>
           <Divider />
