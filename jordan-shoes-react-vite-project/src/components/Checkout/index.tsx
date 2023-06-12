@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Background, CheckoutDiv, CheckoutMain, CheckoutMainTitle, CheckoutTotalPrice, Container, Divider, TotalPrice } from "./styles";
+import { Background, CheckoutDiv, CheckoutMain, CheckoutMainTitle, CheckoutTotalPrice, CloseButton, Container, Divider, Header, TotalPrice } from "./styles";
 import { getAllShoes } from '../../services/api';
 import CheckoutCard from "../CheckoutCard";
 
@@ -31,9 +31,12 @@ function Checkout() {
       <Background />
       <CheckoutDiv>
         <CheckoutMain>
-          <CheckoutMainTitle>
-            Carrinho de compras
-          </CheckoutMainTitle>
+          <Header>
+            <CheckoutMainTitle>
+              Carrinho de compras
+            </CheckoutMainTitle>
+            <CloseButton>+</CloseButton>
+          </Header>
           <Divider />
           {shoes && shoes.map((shoe) => 
           (<CheckoutCard

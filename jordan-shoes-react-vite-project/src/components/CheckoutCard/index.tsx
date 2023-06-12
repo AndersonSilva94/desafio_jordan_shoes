@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from "react";
-import { ButtonCount, Container, CounterDiv, ImageProduct, InfoProduct, InputValue, NameProduct } from "./styles";
+import { ButtonCount, Container, Counter, CounterDiv, ImageProduct, InfoProduct, InputValue, NameProduct, ParcialPrice } from "./styles";
 
 interface CardProps {
   title: string;
@@ -11,18 +11,22 @@ interface CardProps {
 function CheckoutCard(props: CardProps) {
   const [count, setCount] = useState(0);
 
-  function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
+  function handleInputChange(event: ChangeEvent<HTMLInputElement>): void {
     const value = parseInt(event.target.value);
     setCount(value)
   }
 
-  function increment() {
+  function increment(): void {
     setCount(count + 1);
   };
 
-  function decrement() {
+  function decrement(): void {
     setCount(count - 1);
   };
+
+  function convertPrice(price: number): string {
+    return (price * count).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+  }
 
   return(
     <Container>
@@ -32,18 +36,23 @@ function CheckoutCard(props: CardProps) {
       <InfoProduct>
         <NameProduct>{props.title}</NameProduct>
 
-        <CounterDiv>
-          <ButtonCount
-            onClick={decrement}
-          >-</ButtonCount>
-          <InputValue 
-            value={count}
-            onChange={handleInputChange}
-          />
-          <ButtonCount
-             onClick={increment}
-          >+</ButtonCount>
-        </CounterDiv>
+        <Counter>
+          <CounterDiv>
+            <ButtonCount
+              onClick={decrement}
+            >-</ButtonCount>
+            <InputValue 
+              value={count}
+              onChange={handleInputChange}
+            />
+            <ButtonCount
+              onClick={increment}
+            >+</ButtonCount>
+          </CounterDiv>
+          <ParcialPrice>
+            { convertPrice(props.price) }
+          </ParcialPrice>
+        </Counter>
 
       </InfoProduct>
     </Container>

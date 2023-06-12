@@ -54,6 +54,13 @@ export const Divider = styled.div`
   `}
 `
 
+export const Header = styled.div`
+  ${() => css`
+    display: flex;
+    justify-content: space-between;
+  `}
+`
+
 export const CheckoutMainTitle = styled.h2`
   ${() => css`
     font-size: 16px;
@@ -70,5 +77,22 @@ export const CheckoutTotalPrice = styled.div`
 export const TotalPrice = styled.h3`
   ${() => css`
     font-size: 20px;
+  `}
+`
+
+export const CloseButton = styled.button`
+  ${() => css`
+    padding: 5px 10px;
+    margin: 0 10px;
+    border: none;
+    background-color: var(--blue);
+    color: var(--white);
+    border-radius: 50%;
+    rotate: 45deg;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.8;
+    }
   `}
 `

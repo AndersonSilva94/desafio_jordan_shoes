@@ -37,6 +37,14 @@ export const NameProduct = styled.p`
 export const CounterDiv = styled.div`
   ${() => css`
     display: flex;
+    width: 20%;
+  `}
+`
+
+export const Counter = styled.div`
+  ${() => css`
+    display: flex;
+    justify-content: space-between;
     width: 100%;
   `}
 `
@@ -54,12 +62,24 @@ export const ButtonCount = styled.button`
       cursor: pointer;
       opacity: 0.8;
     }
+
+    &:first-of-type {
+      margin-left: 0;
+    }
   `}
 `
 
 export const InputValue = styled.input`
   ${() => css`
-    border: 1px solid var(--gray);
+    border: none;
+    background-color: var(--white-200);
+    padding: 5px 5px;
     flex: 1;
+  `}
+`
+
+export const ParcialPrice = styled.p`
+  ${() => css`
+    font-size: 14px;
   `}
 `
