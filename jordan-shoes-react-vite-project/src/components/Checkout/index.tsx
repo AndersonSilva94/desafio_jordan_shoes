@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Background, CheckoutDiv, CheckoutMain, CheckoutMainTitle, CheckoutTotalPrice, CloseButton, Container, Divider, Header, TotalPrice } from "./styles";
 import { getAllShoes } from '../../services/api';
 import CheckoutCard from "../CheckoutCard";
+import { useStore } from "../../store/store";
 
 interface CardProps {
   id: number;
@@ -11,34 +12,26 @@ interface CardProps {
 }
 
 function Checkout() {
-  const [shoes, setShoes] = useState<CardProps[]>([]);
-
-  useEffect(() => {
-    const getShoes = async () => {
-      try {
-        const shoes = await getAllShoes();
-        setShoes(shoes);
-      } catch (err) {
-        console.error(true)
-      }
-    }
-
-    getShoes()
-  }, [])
+  const shoes = useStore((state: any) => state.cartItems);
+  const toggleCart = useStore((state: any) => state.setOpenCheckout);
 
   return (
     <Container>
-      <Background />
+      <Background
+        onClick={() => toggleCart()}
+      />
       <CheckoutDiv>
         <CheckoutMain>
           <Header>
             <CheckoutMainTitle>
               Carrinho de compras
             </CheckoutMainTitle>
-            <CloseButton>+</CloseButton>
+            <CloseButton
+              onClick={() => toggleCart()}
+            >+</CloseButton>
           </Header>
           <Divider />
-          {shoes && shoes.map((shoe) => 
+          {shoes && shoes.map((shoe: any) => 
           (<CheckoutCard
             key={shoe.id}
             title={shoe.title}

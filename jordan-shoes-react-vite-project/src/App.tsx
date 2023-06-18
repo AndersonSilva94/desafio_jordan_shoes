@@ -4,9 +4,11 @@ import Footer from './components/Footer';
 import Slider from './components/Slider';
 import StoreTitle from './components/StoreTitle';
 import Home from './pages/Home';
+import { useStore } from './store/store';
 import GlobalStyle from './styles/global';
 
 function App() {
+  const isOpenedCheckout = useStore((state: any) => state.isOpenedCheckout)
 
   return (
     <div className="App">
@@ -15,7 +17,7 @@ function App() {
       <Slider />
       <Home />
       <Footer />
-      <Checkout />
+      {isOpenedCheckout && <Checkout />}
       <GlobalStyle />
     </div>
   )
