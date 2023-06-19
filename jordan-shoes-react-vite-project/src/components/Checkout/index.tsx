@@ -1,19 +1,18 @@
-import { useEffect, useState } from "react";
 import { Background, CheckoutDiv, CheckoutMain, CheckoutMainTitle, CheckoutTotalPrice, CloseButton, Container, Divider, Header, TotalPrice } from "./styles";
-import { getAllShoes } from '../../services/api';
 import CheckoutCard from "../CheckoutCard";
 import { useStore } from "../../store/store";
-
-interface CardProps {
-  id: number;
-  title: string;
-  price: number;
-  image: string;
-}
 
 function Checkout() {
   const shoes = useStore((state: any) => state.cartItems);
   const toggleCart = useStore((state: any) => state.setOpenCheckout);
+
+  function getTotalPrice(items: any[]) {
+    const price = items.reduce((acc, cur) => {
+      return acc + (cur.quantity * cur.price)
+    }, 0)
+
+    return price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+  }
 
   return (
     <Container>
@@ -33,15 +32,16 @@ function Checkout() {
           <Divider />
           {shoes && shoes.map((shoe: any) => 
           (<CheckoutCard
-            key={shoe.id}
+            key={shoe.title}
             title={shoe.title}
             price={shoe.price}
             image={shoe.image}
+            quantity={shoe.quantity}
           />)) }
         </CheckoutMain>
         <CheckoutTotalPrice>
           <Divider />
-          <TotalPrice>Preço total: R$ 1000,00</TotalPrice>
+          <TotalPrice>Preço total: {getTotalPrice(shoes)}</TotalPrice>
         </CheckoutTotalPrice>
       </CheckoutDiv>
     </Container>

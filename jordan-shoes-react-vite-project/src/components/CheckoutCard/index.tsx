@@ -1,31 +1,20 @@
-import { ChangeEvent, useState } from "react";
 import { ButtonCount, Container, Counter, CounterDiv, ImageProduct, InfoProduct, InputValue, NameProduct, ParcialPrice } from "./styles";
+import { useStore } from "../../store/store";
 
 interface CardProps {
   title: string;
   price: number;
   image: string;
+  quantity: number;
 }
 
 
 function CheckoutCard(props: CardProps) {
-  const [count, setCount] = useState(0);
+  const incrementItem = useStore((state: any) => state.incrementItem);
+  const decrementItem = useStore((state: any) => state.decrementItem);
 
-  function handleInputChange(event: ChangeEvent<HTMLInputElement>): void {
-    const value = parseInt(event.target.value);
-    setCount(value)
-  }
-
-  function increment(): void {
-    setCount(count + 1);
-  };
-
-  function decrement(): void {
-    setCount(count - 1);
-  };
-
-  function convertPrice(price: number): string {
-    return (price * count).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+  function convertPrice(price: any): string {
+    return (price.price * props.quantity).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
   }
 
   return(
@@ -39,18 +28,18 @@ function CheckoutCard(props: CardProps) {
         <Counter>
           <CounterDiv>
             <ButtonCount
-              onClick={decrement}
+              onClick={() => decrementItem(props)}
             >-</ButtonCount>
             <InputValue 
-              value={count}
-              onChange={handleInputChange}
+              value={props.quantity}
+              readOnly
             />
             <ButtonCount
-              onClick={increment}
+              onClick={() => incrementItem(props)}
             >+</ButtonCount>
           </CounterDiv>
           <ParcialPrice>
-            { convertPrice(props.price) }
+            { convertPrice(props) }
           </ParcialPrice>
         </Counter>
 
