@@ -1,8 +1,12 @@
+import { useState } from "react";
 import { Background, CheckoutDiv, CheckoutMain, CheckoutMainTitle, CheckoutSection, CheckoutTotalPrice, CloseButton, Container, Divider, FinishedButton, Header, TotalPrice } from "./styles";
 import CheckoutCard from "../CheckoutCard";
 import { useStore } from "../../store/store";
+import CartMessages from "../CartMessages";
 
 function Checkout() {
+  const [loading, setLoading] = useState(false);
+  const [finished, setFinished] = useState(false);
   const shoes = useStore((state: any) => state.cartItems);
   const toggleCart = useStore((state: any) => state.setOpenCheckout);
   const cleanCart = useStore((state: any) => state.cleanCartState);
@@ -35,7 +39,7 @@ function Checkout() {
             >+</CloseButton>
           </Header>
           <Divider />
-          {shoes && shoes.map((shoe: any) => 
+          {!!shoes && shoes.map((shoe: any) => 
           (<CheckoutCard
             key={shoe.title}
             title={shoe.title}
@@ -43,15 +47,23 @@ function Checkout() {
             image={shoe.image}
             quantity={shoe.quantity}
           />)) }
+          {shoes.length === 0 && !finished && <CartMessages 
+            message="Seu carrinho de compras está vazio"
+            isEmpty={true}
+          />}
+          {finished && <CartMessages 
+            message="Compra concluída com sucesso! Aproveite!"
+            isEmpty={false}
+          />}
         </CheckoutMain>
         <CheckoutTotalPrice>
           <Divider />
           <CheckoutSection>
             <TotalPrice>Preço total: {getTotalPrice(shoes)}</TotalPrice>
-            {shoes.length > 0 && 
-              <FinishedButton
-                onClick={() => checkoutProducts()}
-              >Finalizar compra</FinishedButton>}
+            <FinishedButton
+              disabled={shoes.length === 0}
+              onClick={() => checkoutProducts()}
+            >Finalizar compra</FinishedButton>
           </CheckoutSection>
         </CheckoutTotalPrice>
       </CheckoutDiv>

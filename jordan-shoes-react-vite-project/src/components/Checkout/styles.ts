@@ -30,7 +30,7 @@ export const CheckoutDiv = styled.div`
     top: 0;
     right: 0;
     position: absolute;
-    background-color: var(--white);
+    background-color: #ffffff;
     box-shadow: -1px 1px 20px var(--black-light);
     z-index: 10;
     padding: 30px 20px;
@@ -110,6 +110,11 @@ export const FinishedButton = styled.button`
     &:hover {
       cursor: pointer;
       opacity: 0.8;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.4;
     }
   `}
 `
