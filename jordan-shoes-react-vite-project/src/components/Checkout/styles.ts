@@ -34,6 +34,10 @@ export const CheckoutDiv = styled.div`
     box-shadow: -1px 1px 20px var(--black-light);
     z-index: 10;
     padding: 30px 20px;
+
+    @media (max-width: 800px) {
+      width: 100%;
+    }
   `}
 `
 

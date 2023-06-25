@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Background, CheckoutDiv, CheckoutMain, CheckoutMainTitle, CheckoutSection, CheckoutTotalPrice, CloseButton, Container, Divider, FinishedButton, Header, TotalPrice } from "./styles";
 import CheckoutCard from "../CheckoutCard";
 import { useStore } from "../../store/store";
 import CartMessages from "../CartMessages";
+import Loading from "../Loading";
 
 function Checkout() {
   const [loading, setLoading] = useState(false);
@@ -19,8 +20,21 @@ function Checkout() {
     return price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
   }
 
+  useEffect(() => {
+    if(finished) {
+      setTimeout(() => {
+        setFinished(false);
+      }, 3000);
+    }
+  }, [finished])
+
   function checkoutProducts() {
+    setLoading(true);
     cleanCart();
+    setTimeout(() => {
+      setLoading(false);
+      setFinished(true);
+    }, 2000)
   }
 
   return (
@@ -47,7 +61,7 @@ function Checkout() {
             image={shoe.image}
             quantity={shoe.quantity}
           />)) }
-          {shoes.length === 0 && !finished && <CartMessages 
+          {shoes.length === 0 && !finished && !loading && <CartMessages 
             message="Seu carrinho de compras está vazio"
             isEmpty={true}
           />}
@@ -55,6 +69,7 @@ function Checkout() {
             message="Compra concluída com sucesso! Aproveite!"
             isEmpty={false}
           />}
+          {loading && !finished && <Loading />}
         </CheckoutMain>
         <CheckoutTotalPrice>
           <Divider />

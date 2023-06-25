@@ -30,7 +30,7 @@ export const NameProduct = styled.p`
   ${() => css`
     font-size: 14px;
     font-weight: 600;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
   `}
 `
 
@@ -46,6 +46,7 @@ export const Counter = styled.div`
     display: flex;
     justify-content: space-between;
     width: 100%;
+    padding-right: 10px;
   `}
 `
 
@@ -74,7 +75,7 @@ export const InputValue = styled.input`
     border: none;
     background-color: var(--white-200);
     padding: 5px 5px;
-    flex: 1;
+    width: 50px;
   `}
 `
 
