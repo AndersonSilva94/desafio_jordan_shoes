@@ -96,3 +96,28 @@ export const CloseButton = styled.button`
     }
   `}
 `
+
+export const FinishedButton = styled.button`
+  ${() => css`
+    padding: 10px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--blue);
+    color: var(--white);
+    width: 30%;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.8;
+    }
+  `}
+`
+
+export const CheckoutSection = styled.div`
+  ${() => css`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  `}
+`

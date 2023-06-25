@@ -1,10 +1,11 @@
-import { Background, CheckoutDiv, CheckoutMain, CheckoutMainTitle, CheckoutTotalPrice, CloseButton, Container, Divider, Header, TotalPrice } from "./styles";
+import { Background, CheckoutDiv, CheckoutMain, CheckoutMainTitle, CheckoutSection, CheckoutTotalPrice, CloseButton, Container, Divider, FinishedButton, Header, TotalPrice } from "./styles";
 import CheckoutCard from "../CheckoutCard";
 import { useStore } from "../../store/store";
 
 function Checkout() {
   const shoes = useStore((state: any) => state.cartItems);
   const toggleCart = useStore((state: any) => state.setOpenCheckout);
+  const cleanCart = useStore((state: any) => state.cleanCartState);
 
   function getTotalPrice(items: any[]) {
     const price = items.reduce((acc, cur) => {
@@ -12,6 +13,10 @@ function Checkout() {
     }, 0)
 
     return price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+  }
+
+  function checkoutProducts() {
+    cleanCart();
   }
 
   return (
@@ -41,7 +46,13 @@ function Checkout() {
         </CheckoutMain>
         <CheckoutTotalPrice>
           <Divider />
-          <TotalPrice>Preço total: {getTotalPrice(shoes)}</TotalPrice>
+          <CheckoutSection>
+            <TotalPrice>Preço total: {getTotalPrice(shoes)}</TotalPrice>
+            {shoes.length > 0 && 
+              <FinishedButton
+                onClick={() => checkoutProducts()}
+              >Finalizar compra</FinishedButton>}
+          </CheckoutSection>
         </CheckoutTotalPrice>
       </CheckoutDiv>
     </Container>

@@ -31,6 +31,12 @@ const useStore = create<State & Actions>((set) => ({
     })
   },
 
+  cleanCartState: () => {
+    set(() => {
+      return { cartItems: [] };
+    });
+  },
+
   incrementItem: (item: any) => {
     set((state: any) => {
       const findIndex = state.cartItems.findIndex((el: any) => el.title === item.title)
