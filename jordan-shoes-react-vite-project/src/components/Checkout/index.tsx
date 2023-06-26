@@ -10,6 +10,7 @@ function Checkout() {
   const [finished, setFinished] = useState(false);
   const shoes = useStore((state: any) => state.cartItems);
   const toggleCart = useStore((state: any) => state.setOpenCheckout);
+  const showCheckout = useStore((state: any) => state.isOpenedCheckout)
   const cleanCart = useStore((state: any) => state.cleanCartState);
 
   function getTotalPrice(items: any[]) {
@@ -37,12 +38,14 @@ function Checkout() {
     }, 2000)
   }
 
+
   return (
     <Container>
       <Background
         onClick={() => toggleCart()}
+        show={showCheckout}
       />
-      <CheckoutDiv>
+      <CheckoutDiv show={showCheckout}>
         <CheckoutMain>
           <Header>
             <CheckoutMainTitle>

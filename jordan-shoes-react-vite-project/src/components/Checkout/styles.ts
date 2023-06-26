@@ -1,4 +1,41 @@
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
+
+const slideIn = keyframes`
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+`;
+
+const slideOut = keyframes`
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+    display: none;
+  }
+`;
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.3;
+  }
+`;
+
+const fadeOut = keyframes`
+  from {
+    opacity: 0.3;
+  }
+  to {
+    opacity: 0;
+  }
+`;
 
 export const Container = styled.div`
   ${() => css`
@@ -9,19 +46,20 @@ export const Container = styled.div`
   `}
 `
 
-export const Background = styled.div`
-  ${() => css`
+export const Background = styled.div<{ show: boolean }>`
+  ${({ show }) => css`
     width: 100%;
     height: 100%;
     top: 0;
     background-color: var(--black-light);
     opacity: 0.3;
     z-index: 1;
+    animation: ${show ? fadeIn : fadeOut} 0.8s forwards;
   `}
 `
 
-export const CheckoutDiv = styled.div`
-  ${() => css`
+export const CheckoutDiv = styled.div<{ show: boolean }>`
+  ${({ show }) => css`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -34,6 +72,7 @@ export const CheckoutDiv = styled.div`
     box-shadow: -1px 1px 20px var(--black-light);
     z-index: 10;
     padding: 30px 20px;
+    animation: ${show ? slideIn : slideOut} 0.8s forwards;
 
     @media (max-width: 800px) {
       width: 100%;
