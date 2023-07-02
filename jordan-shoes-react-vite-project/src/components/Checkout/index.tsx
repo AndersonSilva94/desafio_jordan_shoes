@@ -8,6 +8,7 @@ import Loading from "../Loading";
 function Checkout() {
   const [loading, setLoading] = useState(false);
   const [finished, setFinished] = useState(false);
+  const [closeCheckout, setCloseCheckout] = useState(false);
   const shoes = useStore((state: any) => state.cartItems);
   const toggleCart = useStore((state: any) => state.setOpenCheckout);
   const showCheckout = useStore((state: any) => state.isOpenedCheckout)
@@ -38,21 +39,29 @@ function Checkout() {
     }, 2000)
   }
 
+  function setFalseToToggleCart() {
+    setCloseCheckout(true);
+    setTimeout(() => {
+      toggleCart(false)
+      setCloseCheckout(false);
+    }, 800)
+  }
+
 
   return (
     <Container>
       <Background
-        onClick={() => toggleCart()}
-        show={showCheckout}
+        onClick={() => setFalseToToggleCart()}
+        show={showCheckout && !closeCheckout}
       />
-      <CheckoutDiv show={showCheckout}>
+      <CheckoutDiv show={showCheckout && !closeCheckout}>
         <CheckoutMain>
           <Header>
             <CheckoutMainTitle>
               Carrinho de compras
             </CheckoutMainTitle>
             <CloseButton
-              onClick={() => toggleCart()}
+              onClick={() => setFalseToToggleCart()}
             >+</CloseButton>
           </Header>
           <Divider />

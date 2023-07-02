@@ -23,7 +23,7 @@ function Card(props: CardProps) {
         <ButtonAdd
           onClick={() => {
             addItem(props);
-            toggleCart();
+            toggleCart(true);
           }}
         >Adicionar ao carrinho</ButtonAdd>
       </InfoProduct>
