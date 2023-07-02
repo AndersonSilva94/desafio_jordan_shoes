@@ -21,7 +21,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Montserrat', sans-serif;
 
     &::-webkit-scrollbar {
-      width: 12px;
+      width: 10px;
     }
 
     &::-webkit-scrollbar-track {
@@ -30,7 +30,6 @@ const GlobalStyle = createGlobalStyle`
 
     &::-webkit-scrollbar-thumb {
       background-color: var(--blue);
-      border-radius: 20px;
     }
   }
 `;
