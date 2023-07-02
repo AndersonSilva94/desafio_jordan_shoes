@@ -9,7 +9,7 @@ type Actions = {
   addItem: (item: any) => void;
   incrementItem: (item: any) => void;
   decrementItem: (item: any) => void;
-  setOpenCheckout: () => void
+  setOpenCheckout: (isOpened: boolean) => void
 };
 
 const useStore = create<State & Actions>((set) => ({
@@ -29,6 +29,12 @@ const useStore = create<State & Actions>((set) => ({
         return { cartItems: [...state.cartItems, newItem] };
       }
     })
+  },
+
+  cleanCartState: () => {
+    set(() => {
+      return { cartItems: [] };
+    });
   },
 
   incrementItem: (item: any) => {
@@ -54,8 +60,8 @@ const useStore = create<State & Actions>((set) => ({
     })
   },
 
-  setOpenCheckout: () => {
-    set((state: any) => ({ isOpenedCheckout: !state.isOpenedCheckout }))
+  setOpenCheckout: (isOpened: boolean) => {
+    set((state: any) => ({ isOpenedCheckout: isOpened }))
   }
 }));
 
