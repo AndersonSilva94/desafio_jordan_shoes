@@ -20,4 +20,4 @@ $ npm run dev
 $ npm run server
 ```
 
-3. Abra uma aba do navegador com a seguinte url: `http://127.0.0.1:5173/`
+4. Abra uma aba do navegador com a seguinte url: `http://127.0.0.1:5173/`

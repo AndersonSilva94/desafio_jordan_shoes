@@ -12,6 +12,8 @@
 * Para este primeiro momento utilizei o React como framework de desenvolvimento. Além disso, para tornar o ambiente de desenvolvimento mais rápido e simples, utilizei o Vite para otimizar o processo;
 * Typescript para tipar os parâmetros trafegados;
 * Styled-components para estilização da estrutura;
+* Zustand para gerenciar o estado da aplicação;
+* Axios para realizar requisições para o servidor;
 * Json-server para gerar o mock de servidor dos dados
 
 ## Indo além
